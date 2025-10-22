@@ -16,6 +16,13 @@ def main():
     # Delta time counter
     dt = 0
 
+    # Create an updatable and drawable group
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+
+    # Set both groups as containers for Player
+    Player.containers = (updatables, drawables)
+
     # Instantiate our Player object
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
@@ -34,10 +41,11 @@ def main():
         screen.fill("black")
 
         # Update our players sprite
-        player.update(dt)
+        updatables.update(dt)
 
         # Draw our player to the screen
-        player.draw(screen)
+        for drawable in drawables:
+            drawable.draw(screen)
 
         # Flip the screen, dumping old content and displaying new content
         pygame.display.flip()
