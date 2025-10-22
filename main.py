@@ -33,6 +33,9 @@ def main():
         # Fill the background of the screen black
         screen.fill("black")
 
+        # Update our players sprite
+        player.update(dt)
+
         # Draw our player to the screen
         player.draw(screen)
 
