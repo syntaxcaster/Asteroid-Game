@@ -66,7 +66,7 @@ def main():
                 # Remove both bullet<->asteroid when collide
                 if shot.collision(asteroid):
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
 
         # Draw our player to the screen
         for drawable in drawables:
