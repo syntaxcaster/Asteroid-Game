@@ -4,6 +4,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
 
@@ -19,27 +20,23 @@ def main():
     # Delta time counter
     dt = 0
 
-    # Create an updatable and drawable group
+    # Create our groups
     updatables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
-
-    # Set containers for Player
-    Player.containers = (updatables, drawables)
-
-    # Create a group to hold our asteroids
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
-    # Set containers for asteroids
+    # Set containers
+    Player.containers = (updatables, drawables)
     Asteroid.containers = (asteroids, updatables, drawables)
-
-    # Set the containers for our asteroid field
-    AsteroidField.containers = (updatables)
+    AsteroidField.containers = (updatables,)
+    Shot.containers = (updatables, drawables, shots)
 
     # Instantiate our AsteroidField object
     astrofield = AsteroidField()
 
     # Instantiate our Player object
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, Shot)
 
     # Game loop
     while True:
